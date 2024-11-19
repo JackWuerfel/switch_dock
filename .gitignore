@@ -1,2 +1,13 @@
 # dependencies
 /node_modules
+
+# Next.js
+.next
+next-env.d.ts
+dist
+
+# ENV
+.env
+.env.local
+.env.development
+.env.production

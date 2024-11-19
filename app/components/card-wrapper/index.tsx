@@ -42,7 +42,7 @@ const CardWrapper: React.FC = () => {
   if (loading) return <Loader />;
   if (error) return <p>Oh no... {error.message}</p>;
 
-  return domloaded ? (
+  return domloaded && listItems ? (
     <Reorder.Group
       className="card-wrapper"
       axis="y"

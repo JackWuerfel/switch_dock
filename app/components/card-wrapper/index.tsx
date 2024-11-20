@@ -40,7 +40,15 @@ const CardWrapper: React.FC = () => {
   }, [data?.benefits, data?.policies, data?.safety, route]);
 
   if (loading) return <Loader />;
-  if (error) return <p>Oh no... {error.message}</p>;
+  if (error)
+    return (
+      <div className="card-wrapper">
+        {" "}
+        <Card enabledData={enabledData} setEnabledData={setEnabledData}>
+          <p>Oh no... {error.message}</p>
+        </Card>
+      </div>
+    );
 
   return domloaded && listItems ? (
     <Reorder.Group

@@ -27,15 +27,17 @@ const CardWrapper: React.FC = () => {
   const route = usePathname();
 
   useEffect(() => {
-    setDomloaded(true);
     if (route === "/") {
       setListItems(data?.benefits ? data?.benefits : []);
+      setDomloaded(true);
     }
     if (route === "/safety") {
       setListItems(data?.safety ? data?.safety : []);
+      setDomloaded(true);
     }
     if (route === "/policies") {
       setListItems(data?.policies ? data?.policies : []);
+      setDomloaded(true);
     }
   }, [data?.benefits, data?.policies, data?.safety, route]);
 

@@ -13,15 +13,12 @@ interface Nav {
   routeTo: string;
 }
 
-interface NavbarProps {
-  navigation: Nav[];
-}
-
-const Navbar: React.FC<NavbarProps> = ({ navigation }) => {
+const Navbar: React.FC = () => {
   const route = usePathname();
   const search = useSearchParams();
   const navigate = useRouter();
   const [domloaded, setDomloaded] = useState(false);
+  const [navigation, setNavigation] = useState([]);
 
   const theme = search?.get("theme") ? search.get("theme") : null;
 
@@ -51,6 +48,12 @@ const Navbar: React.FC<NavbarProps> = ({ navigation }) => {
 
   useEffect(() => {
     setDomloaded(true);
+    async function fetchLinks() {
+      let res = await fetch(window.location.origin + "/api/navigation");
+      let data = await res.json();
+      setNavigation(data);
+    }
+    fetchLinks();
   }, []);
 
   useEffect(() => {
@@ -62,7 +65,7 @@ const Navbar: React.FC<NavbarProps> = ({ navigation }) => {
     }
   }, [theme]);
 
-  return domloaded ? (
+  return domloaded && navigation ? (
     <nav className="navbar">
       <a className="pointer" onClick={() => goHome()}>
         <Image
@@ -73,7 +76,7 @@ const Navbar: React.FC<NavbarProps> = ({ navigation }) => {
         />
       </a>
       <ul className="links-wrapper">
-        {navigation?.map((nav) => (
+        {navigation?.map((nav: Nav) => (
           <a
             className="pointer"
             key={nav.id}

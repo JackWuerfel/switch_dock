@@ -6,6 +6,7 @@ import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import { Sun, Moon01 } from "@untitled-ui/icons-react";
 import { useEffect, useMemo, useState } from "react";
 
+import { v4 as uuidv4 } from "uuid";
 
 interface Nav {
   id: string;
@@ -14,12 +15,33 @@ interface Nav {
   routeTo: string;
 }
 
+const navigation = [
+  {
+    id: uuidv4(),
+    label: "Benefits",
+    activeRoute: "/",
+    routeTo: "/",
+  },
+  {
+    id: uuidv4(),
+    label: "Safety",
+    activeRoute: "/safety",
+    routeTo: "/safety",
+  },
+  {
+    id: uuidv4(),
+    label: "Policies",
+    active: false,
+    routeTo: "/policies",
+    activeRoute: "/policies",
+  },
+];
+
 const Navbar: React.FC = () => {
   const route = usePathname();
   const search = useSearchParams();
   const navigate = useRouter();
   const [domloaded, setDomloaded] = useState(false);
-  const [navigation, setNavigation] = useState([]);
 
   const theme = search?.get("theme") ? search.get("theme") : null;
 
@@ -49,12 +71,6 @@ const Navbar: React.FC = () => {
 
   useEffect(() => {
     setDomloaded(true);
-    async function fetchLinks() {
-      let res = await fetch(window.location.origin + "/api/navigation");
-      let data = await res.json();
-      setNavigation(data);
-    }
-    fetchLinks();
   }, []);
 
   useEffect(() => {
@@ -66,8 +82,7 @@ const Navbar: React.FC = () => {
     }
   }, [theme]);
 
-  return domloaded && navigation ? (
-    
+  return domloaded ? (
     <nav className="navbar">
       <a className="pointer" onClick={() => goHome()}>
         <Image

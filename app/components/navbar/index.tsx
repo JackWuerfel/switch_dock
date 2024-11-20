@@ -6,6 +6,7 @@ import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import { Sun, Moon01 } from "@untitled-ui/icons-react";
 import { useEffect, useMemo, useState } from "react";
 
+
 interface Nav {
   id: string;
   label: string;
@@ -66,6 +67,7 @@ const Navbar: React.FC = () => {
   }, [theme]);
 
   return domloaded && navigation ? (
+    
     <nav className="navbar">
       <a className="pointer" onClick={() => goHome()}>
         <Image

@@ -98,6 +98,7 @@ const Navbar: React.FC = () => {
             className="pointer"
             key={nav.id}
             onClick={() => goToRoute(nav.routeTo)}
+            role="link"
           >
             <li className={classNames("links")}>
               {nav.label}

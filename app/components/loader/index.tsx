@@ -11,20 +11,20 @@ const LoadingDot1 = {
 };
 
 const LoadingDot2 = {
-    display: "block",
-    width: "1rem",
-    height: "1rem",
-    backgroundColor: 'white',
-    borderRadius: "50%",
-  };
+  display: "block",
+  width: "1rem",
+  height: "1rem",
+  backgroundColor: "white",
+  borderRadius: "50%",
+};
 
-  const LoadingDot3 = {
-    display: "block",
-    width: "1rem",
-    height: "1rem",
-    backgroundColor: '#D9181D',
-    borderRadius: "50%",
-  };
+const LoadingDot3 = {
+  display: "block",
+  width: "1rem",
+  height: "1rem",
+  backgroundColor: "#D9181D",
+  borderRadius: "50%",
+};
 
 const LoadingContainer = {
   width: "10rem",
@@ -77,18 +77,22 @@ const Loader = () => {
         variants={ContainerVariants}
         initial="initial"
         animate="animate"
+        role="group"
       >
         <motion.span
+          role="status"
           style={LoadingDot1}
           variants={DotVariants}
           transition={DotTransition}
         />
         <motion.span
+          role="status"
           style={LoadingDot2}
           variants={DotVariants}
           transition={DotTransition}
         />
         <motion.span
+          role="status"
           style={LoadingDot3}
           variants={DotVariants}
           transition={DotTransition}
@@ -96,6 +100,6 @@ const Loader = () => {
       </motion.div>
     </div>
   );
-}
+};
 
-export default Loader
+export default Loader;

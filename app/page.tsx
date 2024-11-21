@@ -1,16 +1,14 @@
-
 import ClientWrapper from "./components/client-wrapper";
 import Navbar from "./components/navbar";
 
-const Home = async () => {
-
+const Home = () => {
   return (
-    <>
+    <div data-testid="home-page-render">
       <Navbar />
       <main>
-        <ClientWrapper/>
+        <ClientWrapper />
       </main>
-    </>
+    </div>
   );
 };
 
